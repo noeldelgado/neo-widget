@@ -22,7 +22,9 @@
  */
 
 import { h, create, diff, patch } from 'virtual-dom';
+import svg from 'virtual-dom/virtual-hyperscript/svg';
 import DOMDelegator from 'dom-delegator';
+import { isSVG } from './NeoWidget/Utils';
 
 export default class NeoWidget {
   constructor(config = {}) {
@@ -140,6 +142,15 @@ NeoWidget.jsx = function (jsxObject) {
 
   if (typeof Component === 'function') {
     return new Component(jsxObject);
+  }
+
+  if (isSVG(jsxObject.elementName)) {
+    if (typeof jsxObject.attributes.className !== 'undefined') {
+      jsxObject.attributes.class = jsxObject.attributes.className;
+      delete jsxObject.attributes.className;
+    }
+
+    return svg(jsxObject.elementName, jsxObject.attributes, jsxObject.children);
   }
 
   return h(jsxObject.elementName, jsxObject.attributes, jsxObject.children);

@@ -1,9 +1,9 @@
 import buble from 'rollup-plugin-buble';
 import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+import cjs from 'rollup-plugin-commonjs';
 
 export default {
-  entry: 'index.js',
+  entry: 'src/index.js',
   format: 'umd',
   moduleName: 'NeoWidget',
   plugins: [
@@ -11,7 +11,7 @@ export default {
       main: true,
       browser: true,
     }),
-    commonjs(),
+    cjs(),
     buble(),
   ],
   dest: './lib/index.js',

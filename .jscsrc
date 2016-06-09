@@ -1,0 +1,9 @@
+{
+  "preset": "airbnb",
+  "requireTemplateStrings": true,
+  "maxErrors": -1,
+  "excludeFiles": [
+    "node_modules/**",
+    ".git/**"
+  ]
+}
